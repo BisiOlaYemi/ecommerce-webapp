@@ -12,7 +12,26 @@ const modalCloseFunc = function () { modal.classList.add('closed') }
 modalCloseOverlay.addEventListener('click', modalCloseFunc);
 modalCloseBtn.addEventListener('click', modalCloseFunc);
 
+function autoSlide() {
+  const sliderContainer = document.querySelector(".slider-container");
+  const sliderItems = document.querySelectorAll(".slider-item");
 
+  let currentSlide = 0;
+
+  function slide() {
+    currentSlide = (currentSlide + 1) % sliderItems.length;
+    sliderContainer.scrollTo({
+      left: sliderItems[currentSlide].offsetLeft,
+      behavior: "smooth",
+    });
+  }
+
+  // Start sliding automatically every 5 seconds
+  setInterval(slide, 5000);
+}
+
+// Call the autoSlide function once the page loads
+window.addEventListener("load", autoSlide);
 
 
 
